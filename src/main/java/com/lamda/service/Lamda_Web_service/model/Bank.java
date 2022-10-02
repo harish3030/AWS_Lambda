@@ -17,6 +17,10 @@ public class Bank {
     @Column(name="state")
     private String state;
 
+    public Bank(){
+
+    }
+
     public Bank(String name, String city, String state) {
         this.blood_bank_name=name;
         this.city = city;

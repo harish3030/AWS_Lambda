@@ -9,7 +9,7 @@ public class Requests {
     private Long request_id;
 
     @Column(name="blood_group")
-    private String blood_group;
+    private String bloodGroup;
 
     @Column(name="units")
     private Long units;
@@ -18,16 +18,18 @@ public class Requests {
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "Id", nullable = false)
     private User user;
+
+    public Requests(){
+
+    }
     public Long getUnits(){
         return units;
     }
     public String getBloodGroup(){
-        return blood_group;
+        return bloodGroup;
     }
     public void setUser(User user) {
         this.user = user;
     }
-
-
 
 }

@@ -1,7 +1,9 @@
 package com.lamda.service.Lamda_Web_service.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 import com.lamda.service.Lamda_Web_service.model.BloodPool;
@@ -39,11 +41,10 @@ public class RequestController {
     @Autowired
     BloodPoolRepository bloodPoolRepository;
 
+    Map<String,String> response=new HashMap<String,String>();
     @PostMapping("/users/{userId}/requests")
-    public ResponseEntity<Requests> createRequest(@PathVariable(value = "userId") Long userId,
-
-                                                    @RequestBody Requests new_request) {
-
+    public ResponseEntity<?> createRequest(@PathVariable(value = "userId") Long userId,
+                                           @RequestBody Requests new_request) {
 
         if (!userRepository.existsById(userId)) {
             throw new ResourceNotFoundException("Not found user with id = " + userId);
@@ -58,11 +59,15 @@ public class RequestController {
         // Check any bank has no of units of blood >= amount requested
         Long amountRequested=new_request.getUnits();
         String bloodGroup=new_request.getBloodGroup();
-
+        if(amountRequested<=0){
+            response.put("message","Amount requested not positive");
+            return new ResponseEntity<>(response,HttpStatus.BAD_REQUEST);
+        }
         List<BloodPool>banks  = new ArrayList<BloodPool>();
         bloodPoolRepository.findByBloodGroup(bloodGroup).forEach(banks::add);
         if (banks.isEmpty()) {
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            response.put("message","No Blood Bank has the blood group");
+            return new ResponseEntity<>(response,HttpStatus.BAD_REQUEST);
         }
 
         for(BloodPool bank:banks){
@@ -70,10 +75,11 @@ public class RequestController {
 
                 bank.decrementUnits(amountRequested);
                 bloodPoolRepository.save(bank);
-                return new ResponseEntity<>(request, HttpStatus.CREATED);
+                response.put("message","Request fulfilled");
+                return new ResponseEntity<>(response, HttpStatus.OK);
             }
         }
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        response.put("message","Request unfulfilled");
+        return new ResponseEntity<>(response,HttpStatus.BAD_REQUEST);
     }
-
 }

@@ -18,6 +18,9 @@ public class BloodPool {
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "bloodBankId", nullable = false)
     private Bank bank;
+    public BloodPool(){
+
+    }
     public BloodPool(String group,Long units){
         this.bloodGroup=group;
         this.units=units;

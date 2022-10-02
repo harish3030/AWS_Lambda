@@ -10,7 +10,7 @@ public class Donations {
     private Long donation_id;
 
     @Column(name="blood_group")
-    private String blood_group;
+    private String bloodGroup;
 
     @Column(name="units")
     private Long units;
@@ -21,15 +21,27 @@ public class Donations {
     @JoinColumn(name = "Id", nullable = false)
     @JsonIgnore
     private User user;
+    public Donations(){
 
+    }
+    public Donations(String blood_group,Long units,Long id) {
+        this.bloodGroup=blood_group;
+        this.units=units;
+        this.bloodBankId=id;
+    }
+    public Donations(String blood_group,Long units) {
+        this.bloodGroup=blood_group;
+        this.units=units;
+
+    }
     public String getBloodGroup(){
-        return blood_group;
+        return bloodGroup;
     }
     public Long getUnits(){
         return units;
     }
 
-    public Long getBankId(){ return bloodBankId;}
+    public Long getBloodBankId(){ return bloodBankId;}
 
     public void setUser(User user) {
         this.user = user;

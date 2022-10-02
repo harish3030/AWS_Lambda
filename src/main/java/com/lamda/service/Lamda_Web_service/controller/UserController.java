@@ -1,7 +1,9 @@
 package com.lamda.service.Lamda_Web_service.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -28,7 +30,7 @@ import com.lamda.service.Lamda_Web_service.repository.UserRepository;
 public class UserController{
     @Autowired
     UserRepository userRepository;
-
+    Map<String,String> response=new HashMap<String,String>();
     @GetMapping("/users")
     public ResponseEntity<List<User>> getAllUsers(@RequestParam(required = false) String blood_group) {
         List<User> users = new ArrayList<User>();
@@ -54,9 +56,10 @@ public class UserController{
     }
 
     @PostMapping("/users")
-    public ResponseEntity<User> createUser(@RequestBody User user) {
+    public ResponseEntity<?> createUser(@RequestBody User user) {
         User _user = userRepository.save(new User(user.getName(), user.getAge(),user.getCity(),
                 user.getState(),user.getBloodType() ));
-        return new ResponseEntity<>(_user, HttpStatus.CREATED);
+        response.put("message","User Added");
+        return new ResponseEntity<>(response, HttpStatus.OK);
     }
 }

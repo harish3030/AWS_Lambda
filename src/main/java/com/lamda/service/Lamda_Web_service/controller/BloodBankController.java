@@ -1,7 +1,9 @@
 package com.lamda.service.Lamda_Web_service.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +26,7 @@ public class BloodBankController {
     @Autowired
     private BloodBankRepository bloodBankRepository;
 
+    Map<String,String> response=new HashMap<String,String>();
     @GetMapping("/banks")
     public ResponseEntity<List<Bank>> getAllBanks() {
         List<Bank> bank = new ArrayList<Bank>();
@@ -40,8 +43,9 @@ public class BloodBankController {
     }
 
     @PostMapping("/banks")
-    public ResponseEntity<Bank> createBloodBank(@RequestBody Bank bank) {
+    public ResponseEntity<?> createBloodBank(@RequestBody Bank bank) {
         Bank _bank= bloodBankRepository.save(new Bank(bank.getName(),bank.getCity(),bank.getState()));
-        return new ResponseEntity<>(_bank, HttpStatus.CREATED);
+        response.put("message","Blood Bank created");
+        return new ResponseEntity<>(response, HttpStatus.OK);
     }
 }
