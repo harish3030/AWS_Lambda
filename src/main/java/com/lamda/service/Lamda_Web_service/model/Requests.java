@@ -6,19 +6,19 @@ import javax.persistence.*;
 public class Requests {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "request_generator")
-    private long request_id;
+    private Long request_id;
 
     @Column(name="blood_group")
     private String blood_group;
 
     @Column(name="units")
-    private long units;
+    private Long units;
 
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "user_id", nullable = false)
+    @JoinColumn(name = "Id", nullable = false)
     private User user;
-    public long getUnits(){
+    public Long getUnits(){
         return units;
     }
     public String getBloodGroup(){

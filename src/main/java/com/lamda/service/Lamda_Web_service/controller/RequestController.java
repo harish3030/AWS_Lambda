@@ -68,7 +68,7 @@ public class RequestController {
         for(BloodPool bank:banks){
             if(bank.getUnits()>=amountRequested){
 
-                bank.setUnits(amountRequested);
+                bank.decrementUnits(amountRequested);
                 bloodPoolRepository.save(bank);
                 return new ResponseEntity<>(request, HttpStatus.CREATED);
             }

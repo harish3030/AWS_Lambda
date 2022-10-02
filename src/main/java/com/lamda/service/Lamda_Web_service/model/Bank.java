@@ -3,10 +3,10 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "BloodBank")
-public class BloodBank {
+public class Bank {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "bank_generator")
-    private long blood_bank_id;
+    private Long id;
 
     @Column(name="blood_bank_name")
     private String blood_bank_name;
@@ -17,4 +17,19 @@ public class BloodBank {
     @Column(name="state")
     private String state;
 
+    public Bank(String name, String city, String state) {
+        this.blood_bank_name=name;
+        this.city = city;
+        this.state=state;
+
+    }
+    public String getName(){
+        return blood_bank_name;
+    }
+    public String getCity(){
+        return city;
+    }
+    public String getState(){
+        return state;
+    }
 }

@@ -1,7 +1,6 @@
 package com.lamda.service.Lamda_Web_service.controller;
 
-
-
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -52,7 +51,7 @@ public class DonationController {
             throw new ResourceNotFoundException("Not found User with id = " + userId);
         }
 
-        List<Donations> donations = donationRepository.findByUserID(userId);
+        List<Donations> donations = donationRepository.findByUserId(userId);
         return new ResponseEntity<>(donations, HttpStatus.OK);
     }
     @GetMapping("/users/{blood_bank_Id}/donations")
@@ -61,13 +60,17 @@ public class DonationController {
             throw new ResourceNotFoundException("Not found blood bank with id = " + blood_bank_Id);
         }
 
-        List<Donations> donations = donationRepository.findByBloodBankID(blood_bank_Id);
+        List<Donations> donations = donationRepository.findByBloodBankId(blood_bank_Id);
         return new ResponseEntity<>(donations, HttpStatus.OK);
     }
-    @PostMapping("/users/{userId}/{blood_bank_Id}/donations")
+    @PostMapping("/users/{userId}/donations")
     public ResponseEntity<Donations> createDonation(@PathVariable(value = "userId") Long userId,
-                                                   @PathVariable(value="blood_bank_Id")Long blood_bank_Id,
+
                                                  @RequestBody Donations new_donation) {
+
+        Long blood_bank_Id= new_donation.getBankId();
+        System.out.println(userId);
+        System.out.println(blood_bank_Id);
 
         if (!bloodBankRepository.existsById(blood_bank_Id)) {
             throw new ResourceNotFoundException("Not found blood bank with id = " + blood_bank_Id);
@@ -83,15 +86,34 @@ public class DonationController {
         }).orElseThrow(() -> new ResourceNotFoundException("Not found user with id = " + userId));
 
         // Add blood collected to the corresponding blood bank pool
-        BloodPool new_blood_pool=new BloodPool(new_donation.getBloodGroup(), new_donation.getUnits());
-        BloodPool _bloodpool=bloodBankRepository.findById(blood_bank_Id).map(bank ->{
-            new_blood_pool.setBank(bank);
-            return bloodPoolRepository.save(new_blood_pool);
 
-        }).orElseThrow(() -> new ResourceNotFoundException("Not found bank with id = " + blood_bank_Id));;
+        Long amountDonated=new_donation.getUnits();
+        String bloodGroup=new_donation.getBloodGroup();
 
+        // No blood available of a particular group in the blood bank
+        List<BloodPool>pools  = new ArrayList<BloodPool>();
+        bloodPoolRepository.findByBankId(blood_bank_Id).forEach(pools::add);
 
+        if (!bloodPoolRepository.existsById(blood_bank_Id) && pools.isEmpty()) {
 
+            BloodPool new_blood_pool=new BloodPool( bloodGroup,amountDonated);
+            BloodPool _bloodpool=bloodBankRepository.findById(blood_bank_Id).map(bank ->{
+                new_blood_pool.setBank(bank);
+                return bloodPoolRepository.save(new_blood_pool);
+
+            }).orElseThrow(() -> new ResourceNotFoundException("Not found bank with id = " + blood_bank_Id));
+
+        }
+        // Blood of a particular group already present in pool.Now,add the new donation to it.
+        else {
+            for(BloodPool pool:pools){
+                if(pool.getBloodGroup().equalsIgnoreCase(bloodGroup)){
+                    pool.incrementUnits(amountDonated);
+                    bloodPoolRepository.save(pool);
+                    break;
+                }
+            }
+        }
         return new ResponseEntity<>(donation, HttpStatus.CREATED);
     }
 

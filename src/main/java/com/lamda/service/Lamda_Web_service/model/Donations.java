@@ -1,39 +1,41 @@
 package com.lamda.service.Lamda_Web_service.model;
 import javax.persistence.*;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "Donation")
 public class Donations {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "donation_generator")
-    private long donation_id;
+    private Long donation_id;
 
     @Column(name="blood_group")
     private String blood_group;
 
     @Column(name="units")
-    private long units;
+    private Long units;
 
-    @Column(name="blood_bank_id")
-    private long bank_id;
+    @Column(name="bloodBankId")
+    private Long bloodBankId;
     @ManyToOne (fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "user_id", nullable = false)
+    @JoinColumn(name = "Id", nullable = false)
+    @JsonIgnore
     private User user;
 
     public String getBloodGroup(){
         return blood_group;
     }
-    public long getUnits(){
+    public Long getUnits(){
         return units;
     }
+
+    public Long getBankId(){ return bloodBankId;}
 
     public void setUser(User user) {
         this.user = user;
     }
-
-
-
-
-
+    public User getUser() {
+        return user;
+    }
 
 }

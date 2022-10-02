@@ -7,33 +7,36 @@ import javax.persistence.*;
 public class BloodPool {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "blood_generator")
-    private long blood_count;
+    private Long blood_count;
 
-    @Column(name="blood_group")
-    private String blood_group;
+    @Column(name="bloodGroup")
+    private String bloodGroup;
 
     @Column(name="units")
-    private long units;
+    private Long units;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "blood_bank_id", nullable = false)
-    private BloodBank bank;
-    public BloodPool(String group,long units){
-        this.blood_group=group;
+    @JoinColumn(name = "bloodBankId", nullable = false)
+    private Bank bank;
+    public BloodPool(String group,Long units){
+        this.bloodGroup=group;
         this.units=units;
     }
-    public void setBank(BloodBank bank) {
+    public void setBank(Bank bank) {
         this.bank = bank;
     }
     public String getBloodGroup(){
-        return blood_group;
+        return bloodGroup;
     }
-    public long getUnits(){
+    public Long getUnits(){
         return units;
     }
 
-    public void setUnits(long val){
+    public void decrementUnits(Long val){
         if(units>=val) units-=val;
+    }
+    public void incrementUnits(Long val){
+        units+=val;
     }
 
 }

@@ -6,8 +6,8 @@ import javax.persistence.*;
 @Table(name = "UserTable")
 public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private long user_id;
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_generator")
+    private Long id;
 
     @Column(name = "user_name")
     private String user_name;
@@ -21,8 +21,8 @@ public class User {
     @Column(name = "state")
     private String state;
 
-    @Column(name="blood_group")
-    private String blood_group;
+    @Column(name="bloodGroup")
+    private String bloodGroup;
 
     public User() {
 
@@ -33,10 +33,10 @@ public class User {
         this.age = age;
         this.city = city;
         this.state=state;
-        this.blood_group=blood_group;
+        this.bloodGroup=blood_group;
     }
-    public long getId() {
-        return user_id;
+    public Long getId() {
+        return id;
     }
 
     public String getName() {
@@ -52,17 +52,14 @@ public class User {
         return state;
     }
     public String getBloodType(){
-        return blood_group;
+        return bloodGroup;
     }
     public void setName(String name){
         this.user_name=name;
     }
     public void setBloodType(String type){
-        this.blood_group=type;
+        this.bloodGroup=type;
     }
-
-
-
 
 }
 

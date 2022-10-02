@@ -4,7 +4,7 @@ import com.lamda.service.Lamda_Web_service.model.Requests;
 
 import java.util.List;
 public interface RequestRepository extends JpaRepository<Requests, Long> {
-    List<Requests> findByUserID(Long user_id);
+    List<Requests> findByUserId(Long user_id);
 
 
 }

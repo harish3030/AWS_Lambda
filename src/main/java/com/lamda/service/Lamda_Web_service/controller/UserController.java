@@ -36,7 +36,7 @@ public class UserController{
         if (blood_group == null)
             userRepository.findAll().forEach(users::add);
         else
-            userRepository.findByBloodType(blood_group).forEach(users::add);
+            userRepository.findByBloodGroup(blood_group).forEach(users::add);
 
         if (users.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
