@@ -1,8 +1,9 @@
 package com.lamda.service.Lamda_Web_service.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
-
+import java.util.Map;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,7 +45,7 @@ public class DonationController {
     @Autowired
     private BloodPoolRepository bloodPoolRepository;
 
-
+    Map<String,String> response=new HashMap<String,String>();
     @GetMapping("/users/{userId}/donations")
     public ResponseEntity<List<Donations>> getAllDonationsByUserId(@PathVariable(value = "userId") Long userId) {
         if (!userRepository.existsById(userId)) {
@@ -54,23 +55,13 @@ public class DonationController {
         List<Donations> donations = donationRepository.findByUserId(userId);
         return new ResponseEntity<>(donations, HttpStatus.OK);
     }
-    @GetMapping("/users/{blood_bank_Id}/donations")
-    public ResponseEntity<List<Donations>> getAllDonationsByBloodBankId(@PathVariable(value = "blood_bank_Id") Long blood_bank_Id) {
-        if (!bloodBankRepository.existsById(blood_bank_Id)) {
-            throw new ResourceNotFoundException("Not found blood bank with id = " + blood_bank_Id);
-        }
 
-        List<Donations> donations = donationRepository.findByBloodBankId(blood_bank_Id);
-        return new ResponseEntity<>(donations, HttpStatus.OK);
-    }
     @PostMapping("/users/{userId}/donations")
-    public ResponseEntity<Donations> createDonation(@PathVariable(value = "userId") Long userId,
+    public ResponseEntity<?> createDonation(@PathVariable(value = "userId") Long userId,
 
                                                  @RequestBody Donations new_donation) {
 
-        Long blood_bank_Id= new_donation.getBankId();
-        System.out.println(userId);
-        System.out.println(blood_bank_Id);
+        Long blood_bank_Id= new_donation.getBloodBankId();
 
         if (!bloodBankRepository.existsById(blood_bank_Id)) {
             throw new ResourceNotFoundException("Not found blood bank with id = " + blood_bank_Id);
@@ -89,12 +80,14 @@ public class DonationController {
 
         Long amountDonated=new_donation.getUnits();
         String bloodGroup=new_donation.getBloodGroup();
-
+        if(amountDonated<=0){
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
         // No blood available of a particular group in the blood bank
         List<BloodPool>pools  = new ArrayList<BloodPool>();
         bloodPoolRepository.findByBankId(blood_bank_Id).forEach(pools::add);
-
-        if (!bloodPoolRepository.existsById(blood_bank_Id) && pools.isEmpty()) {  //check
+        boolean exists = pools.stream().anyMatch(pool -> pool.getBloodGroup().equalsIgnoreCase(bloodGroup));
+        if (pools.isEmpty() || !exists) {
 
             BloodPool new_blood_pool=new BloodPool( bloodGroup,amountDonated);
             BloodPool _bloodpool=bloodBankRepository.findById(blood_bank_Id).map(bank ->{
@@ -114,8 +107,7 @@ public class DonationController {
                 }
             }
         }
-        return new ResponseEntity<>(donation, HttpStatus.CREATED);
+        response.put("message","Donation successful");
+        return new ResponseEntity<>(response, HttpStatus.OK);
     }
-
-
 }
