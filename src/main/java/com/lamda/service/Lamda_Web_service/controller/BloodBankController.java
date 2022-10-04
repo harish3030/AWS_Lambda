@@ -28,14 +28,10 @@ public class BloodBankController {
     public ResponseEntity<List<Bank>> getAllBanks() {
         List<Bank> bank = new ArrayList<Bank>();
 
-
         bloodBankRepository.findAll().forEach(bank::add);
-
-
         if (bank.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
-
         return new ResponseEntity<>(bank, HttpStatus.OK);
     }
 

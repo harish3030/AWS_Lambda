@@ -4,7 +4,6 @@ import com.lamda.service.Lamda_Web_service.model.BloodPool;
 
 import java.util.List;
 public interface BloodPoolRepository extends JpaRepository<BloodPool, Long> {
-
       List<BloodPool>findByBloodGroup(String group);
       List<BloodPool>findByBankId(Long blood_bank_id);
 }

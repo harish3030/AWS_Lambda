@@ -94,7 +94,7 @@ public class DonationController {
         List<BloodPool>pools  = new ArrayList<BloodPool>();
         bloodPoolRepository.findByBankId(blood_bank_Id).forEach(pools::add);
 
-        if (!bloodPoolRepository.existsById(blood_bank_Id) && pools.isEmpty()) {
+        if (!bloodPoolRepository.existsById(blood_bank_Id) && pools.isEmpty()) {  //check
 
             BloodPool new_blood_pool=new BloodPool( bloodGroup,amountDonated);
             BloodPool _bloodpool=bloodBankRepository.findById(blood_bank_Id).map(bank ->{
