@@ -19,6 +19,8 @@ public class Requests {
     @JoinColumn(name = "Id", nullable = false)
     private User user;
 
+
+
     public Requests(){
 
     }
@@ -30,6 +32,14 @@ public class Requests {
     }
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public void setBloodGroup(String bloodGroup) {
+        this.bloodGroup = bloodGroup;
+    }
+
+    public void setUnits(Long units) {
+        this.units = units;
     }
 
 }
