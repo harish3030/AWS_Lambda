@@ -1,20 +1,15 @@
 package com.lamda.service.Lamda_Web_service.model;
-
 import javax.persistence.*;
-
 @Entity
 @Table(name = "Blood")
 public class BloodPool {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "blood_generator")
     private Long blood_count;
-
     @Column(name="bloodGroup")
     private String bloodGroup;
-
     @Column(name="units")
     private Long units;
-
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "bloodBankId", nullable = false)
     private Bank bank;
@@ -34,7 +29,6 @@ public class BloodPool {
     public Long getUnits(){
         return units;
     }
-
     public void decrementUnits(Long val){
         if(units>=val) units-=val;
     }
@@ -42,4 +36,4 @@ public class BloodPool {
         units+=val;
     }
 
-}
+   }

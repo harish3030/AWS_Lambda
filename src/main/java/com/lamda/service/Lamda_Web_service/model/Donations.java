@@ -1,20 +1,16 @@
 package com.lamda.service.Lamda_Web_service.model;
 import javax.persistence.*;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-
 @Entity
 @Table(name = "Donation")
 public class Donations {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "donation_generator")
     private Long donation_id;
-
     @Column(name="blood_group")
     private String bloodGroup;
-
     @Column(name="units")
     private Long units;
-
     @Column(name="bloodBankId")
     private Long bloodBankId;
     @ManyToOne (fetch = FetchType.LAZY, optional = false)
@@ -25,6 +21,7 @@ public class Donations {
 
     }
     public Donations(String blood_group,Long units,Long id) {
+
         this.bloodGroup=blood_group;
         this.units=units;
         this.bloodBankId=id;
@@ -40,9 +37,7 @@ public class Donations {
     public Long getUnits(){
         return units;
     }
-
     public Long getBloodBankId(){ return bloodBankId;}
-
     public void setUser(User user) {
         this.user = user;
     }
@@ -50,4 +45,4 @@ public class Donations {
         return user;
     }
 
-}
+   }

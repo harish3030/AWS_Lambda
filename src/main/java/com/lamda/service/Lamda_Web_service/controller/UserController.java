@@ -46,7 +46,6 @@ public class UserController{
 
         return new ResponseEntity<>(users, HttpStatus.OK);
     }
-
     @GetMapping("/users/{id}")
     public ResponseEntity<User> getUserById(@PathVariable("id") long id) {
         User user = userRepository.findById(id)
@@ -54,11 +53,10 @@ public class UserController{
 
         return new ResponseEntity<>(user, HttpStatus.OK);
     }
-
     @PostMapping("/users")
     public ResponseEntity<?> createUser(@RequestBody User user) {
         User _user = userRepository.save(new User(user.getName(), user.getAge(),user.getCity(),
-                user.getState(),user.getBloodType() ));
+                user.getState(),user.getBloodGroup() ));
         response.put("message","User Added");
         return new ResponseEntity<>(response, HttpStatus.OK);
     }

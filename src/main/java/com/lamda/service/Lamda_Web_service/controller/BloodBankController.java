@@ -17,7 +17,6 @@ import com.lamda.service.Lamda_Web_service.model.Bank;
 
 import com.lamda.service.Lamda_Web_service.repository.BloodBankRepository;
 
-
 @CrossOrigin(origins = "http://localhost:8081")
 @RestController
 @RequestMapping("/api")
@@ -30,15 +29,10 @@ public class BloodBankController {
     @GetMapping("/banks")
     public ResponseEntity<List<Bank>> getAllBanks() {
         List<Bank> bank = new ArrayList<Bank>();
-
-
         bloodBankRepository.findAll().forEach(bank::add);
-
-
         if (bank.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
-
         return new ResponseEntity<>(bank, HttpStatus.OK);
     }
 
@@ -46,6 +40,6 @@ public class BloodBankController {
     public ResponseEntity<?> createBloodBank(@RequestBody Bank bank) {
         Bank _bank= bloodBankRepository.save(new Bank(bank.getName(),bank.getCity(),bank.getState()));
         response.put("message","Blood Bank created");
-        return new ResponseEntity<>(response, HttpStatus.OK);
+        return new ResponseEntity<>(_bank, HttpStatus.OK);
     }
 }

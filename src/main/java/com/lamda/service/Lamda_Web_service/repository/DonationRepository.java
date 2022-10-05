@@ -5,6 +5,4 @@ import com.lamda.service.Lamda_Web_service.model.Donations;
 import java.util.List;
 public interface DonationRepository extends JpaRepository<Donations, Long> {
     List<Donations>findByUserId(Long user_id);
-    List<Donations>findByBloodBankId(Long blood_bank_id);
-
 }

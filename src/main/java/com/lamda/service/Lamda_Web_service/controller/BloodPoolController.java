@@ -30,7 +30,6 @@ public class BloodPoolController {
     private BloodPoolRepository bloodPoolRepository;
     @Autowired
     private BloodBankRepository bloodBankRepository;
-
     @GetMapping("/banks/{blood_bank_Id}/donations")
     public ResponseEntity<?> getUnitsByBloodBankId(@PathVariable(value = "blood_bank_Id") Long blood_bank_Id) {
         if (!bloodBankRepository.existsById(blood_bank_Id)) {
