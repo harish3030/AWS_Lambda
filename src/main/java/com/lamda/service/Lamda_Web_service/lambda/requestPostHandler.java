@@ -17,7 +17,7 @@ public class requestPostHandler implements RequestHandler<APIGatewayProxyRequest
 
         RequestController controller = new RequestController();
         
-        //Requests request= new ObjectMapper().readValue(input_value, Requests.class);
+        //Requests request= new ObjectMapper().readValue(input_json, Requests.class);
         Requests request= (Requests) input_json.getValue();
 
         APIGatewayProxyResponseEvent response = new APIGatewayProxyResponseEvent();
