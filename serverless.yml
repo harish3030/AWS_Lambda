@@ -34,17 +34,17 @@ functions:
 
   donationPost:
     handler: com.lamda.service.Lamda_Web_service.lambda.donationPostHandler
-      events:
-        - http:
-          method: POST
-          path: /users/1/donations
+    events:
+      - http:
+        method: POST
+        path: /users/1/donations
 
     donationGet:
       handler: com.lamda.service.Lamda_Web_service.lambda.donationGetHandler
-        events:
-          - http:
-            method: GET
-            path: /users/1/donations
+      events:
+        - http:
+          method: GET
+          path: /users/1/donations
 
 
 
