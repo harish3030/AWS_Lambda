@@ -8,12 +8,16 @@ import com.fasterxml.jackson.databind.util.JSONPObject;
 import com.lamda.service.Lamda_Web_service.controller.RequestController;
 import com.lamda.service.Lamda_Web_service.model.Requests;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 public class requestPostHandler implements RequestHandler<APIGatewayProxyRequestEvent, APIGatewayProxyResponseEvent> {
     @Override
     public APIGatewayProxyResponseEvent handleRequest(APIGatewayProxyRequestEvent input, Context context) {
         JSONPObject input_json = new JSONPObject(input.getBody(), Requests.class);
 
         RequestController controller = new RequestController();
+        
+        //Requests request= new ObjectMapper().readValue(input_value, Requests.class);
         Requests request= (Requests) input_json.getValue();
 
         APIGatewayProxyResponseEvent response = new APIGatewayProxyResponseEvent();
