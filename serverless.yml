@@ -25,24 +25,28 @@ functions:
     handler: com.lamda.service.Lamda_Web_service.lambda.User
     environment:
       MESSAGE: Duke42
+  simpleHttp:
+    handler: com.lamda.service.Lamda_Web_service.lambda.SimpleHttp
+    events:
+      - http:
+          method: POST
+          path: /simple
   requestPost:
-    handler: com.lamda.service.Lamda_Web_service.lambda.requestPostHandler
+    handler: com.lamda.service.Lamda_Web_service.lambda.requestPostHandler::handleRequest
     events:
       - http:
           method: POST
           path: /users/1/requests
-
   donationPost:
-    handler: com.lamda.service.Lamda_Web_service.lambda.donationPostHandler
+    handler: com.lamda.service.Lamda_Web_service.lambda.donationPostHandler::handleRequest
     events:
       - http:
-        method: POST
-        path: /users/1/donations
-
-    donationGet:
-      handler: com.lamda.service.Lamda_Web_service.lambda.donationGetHandler
-      events:
-        - http:
+          method: POST
+          path: /users/1/donations
+  donationGet:
+    handler: com.lamda.service.Lamda_Web_service.lambda.donationGetHandler::handleRequest
+    events:
+      - http:
           method: GET
           path: /users/1/donations
 
