@@ -32,7 +32,6 @@ import com.lamda.service.Lamda_Web_service.repository.BloodPoolRepository;
 @CrossOrigin(origins = "http://localhost:8081")
 @RestController
 @RequestMapping("/api")
-
 public class RequestController {
     @Autowired
     RequestRepository requestRepository;

@@ -4,7 +4,7 @@ provider:
   name: aws
   runtime: java11
   profile: lambda-profile
-  timeout: 10
+  timeout: 100
   memorySize: 1024
   iamRoleStatements:
     - Effect: 'Allow'

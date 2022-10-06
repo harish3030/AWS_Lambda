@@ -8,7 +8,7 @@
       "name": "aws",
       "runtime": "java11",
       "profile": "lambda-profile",
-      "timeout": 10,
+      "timeout": 100,
       "memorySize": 1024,
       "iamRoleStatements": [
         {
@@ -226,13 +226,13 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/lambda-web-service/dev/1664986654791-2022-10-05T16:17:34.791Z/Lamda_Web_service-0.0.1-SNAPSHOT.jar"
+                "S3Key": "serverless/lambda-web-service/dev/1665068289532-2022-10-06T14:58:09.532Z/Lamda_Web_service-0.0.1-SNAPSHOT.jar"
               },
               "Handler": "com.lamda.service.Lamda_Web_service.lambda.User",
               "Runtime": "java11",
               "FunctionName": "lambda-web-service-dev-simpleLambda",
               "MemorySize": 1024,
-              "Timeout": 10,
+              "Timeout": 100,
               "Environment": {
                 "Variables": {
                   "MESSAGE": "Duke42"
@@ -256,13 +256,13 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/lambda-web-service/dev/1664986654791-2022-10-05T16:17:34.791Z/Lamda_Web_service-0.0.1-SNAPSHOT.jar"
+                "S3Key": "serverless/lambda-web-service/dev/1665068289532-2022-10-06T14:58:09.532Z/Lamda_Web_service-0.0.1-SNAPSHOT.jar"
               },
               "Handler": "com.lamda.service.Lamda_Web_service.lambda.SimpleHttp",
               "Runtime": "java11",
               "FunctionName": "lambda-web-service-dev-simpleHttp",
               "MemorySize": 1024,
-              "Timeout": 10,
+              "Timeout": 100,
               "Role": {
                 "Fn::GetAtt": [
                   "IamRoleLambdaExecution",
@@ -281,13 +281,13 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/lambda-web-service/dev/1664986654791-2022-10-05T16:17:34.791Z/Lamda_Web_service-0.0.1-SNAPSHOT.jar"
+                "S3Key": "serverless/lambda-web-service/dev/1665068289532-2022-10-06T14:58:09.532Z/Lamda_Web_service-0.0.1-SNAPSHOT.jar"
               },
               "Handler": "com.lamda.service.Lamda_Web_service.lambda.requestPostHandler::handleRequest",
               "Runtime": "java11",
               "FunctionName": "lambda-web-service-dev-requestPost",
               "MemorySize": 1024,
-              "Timeout": 10,
+              "Timeout": 100,
               "Role": {
                 "Fn::GetAtt": [
                   "IamRoleLambdaExecution",
@@ -306,13 +306,13 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/lambda-web-service/dev/1664986654791-2022-10-05T16:17:34.791Z/Lamda_Web_service-0.0.1-SNAPSHOT.jar"
+                "S3Key": "serverless/lambda-web-service/dev/1665068289532-2022-10-06T14:58:09.532Z/Lamda_Web_service-0.0.1-SNAPSHOT.jar"
               },
               "Handler": "com.lamda.service.Lamda_Web_service.lambda.donationPostHandler::handleRequest",
               "Runtime": "java11",
               "FunctionName": "lambda-web-service-dev-donationPost",
               "MemorySize": 1024,
-              "Timeout": 10,
+              "Timeout": 100,
               "Role": {
                 "Fn::GetAtt": [
                   "IamRoleLambdaExecution",
@@ -331,13 +331,13 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/lambda-web-service/dev/1664986654791-2022-10-05T16:17:34.791Z/Lamda_Web_service-0.0.1-SNAPSHOT.jar"
+                "S3Key": "serverless/lambda-web-service/dev/1665068289532-2022-10-06T14:58:09.532Z/Lamda_Web_service-0.0.1-SNAPSHOT.jar"
               },
               "Handler": "com.lamda.service.Lamda_Web_service.lambda.donationGetHandler::handleRequest",
               "Runtime": "java11",
               "FunctionName": "lambda-web-service-dev-donationGet",
               "MemorySize": 1024,
-              "Timeout": 10,
+              "Timeout": 100,
               "Role": {
                 "Fn::GetAtt": [
                   "IamRoleLambdaExecution",
@@ -349,54 +349,54 @@
               "DonationGetLogGroup"
             ]
           },
-          "SimpleLambdaLambdaVersionq12qrWLC00KNEJ3l2RRJSXNsXNONV4WY5CmmVGbJNQ": {
+          "SimpleLambdaLambdaVersion9ttIR1rrZzKC4pkc6YFhxVjPZFdxKhclgTYMFBhCo": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "SimpleLambdaLambdaFunction"
               },
-              "CodeSha256": "ewc1NxJHrEB92FSkYIJzJP0EmuNsKjU17TXG/h62yXg="
+              "CodeSha256": "z1N3k/voQu9GizNzLlmGCEdl2BrW3+ClH8+T2BW5J+E="
             }
           },
-          "SimpleHttpLambdaVersiono0Zg6inTnGWXOJImdfD18LLiH2mjYfRA4UQhRkl61Ik": {
+          "SimpleHttpLambdaVersionCSJi4lD1ji3lLC8UECk26eEM2NHln3Fadl0UUWZn4bw": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "SimpleHttpLambdaFunction"
               },
-              "CodeSha256": "ewc1NxJHrEB92FSkYIJzJP0EmuNsKjU17TXG/h62yXg="
+              "CodeSha256": "z1N3k/voQu9GizNzLlmGCEdl2BrW3+ClH8+T2BW5J+E="
             }
           },
-          "RequestPostLambdaVersioncvkeICf9Lm2zccBD0n347ourYqL0NOt4bQqNq74a3AE": {
+          "RequestPostLambdaVersionFhfu8B1IT8nACnYbu5EYfp0ay806GgGcjWLcWVZQE": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "RequestPostLambdaFunction"
               },
-              "CodeSha256": "ewc1NxJHrEB92FSkYIJzJP0EmuNsKjU17TXG/h62yXg="
+              "CodeSha256": "z1N3k/voQu9GizNzLlmGCEdl2BrW3+ClH8+T2BW5J+E="
             }
           },
-          "DonationPostLambdaVersionb9H99nYHPKYpakRoggLOngUt4A25PiqbUIBd5A6kLw": {
+          "DonationPostLambdaVersion9Eba5DKBYbeUBnfI05wnWampPPjBstV1MtNyQsvlYo": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "DonationPostLambdaFunction"
               },
-              "CodeSha256": "ewc1NxJHrEB92FSkYIJzJP0EmuNsKjU17TXG/h62yXg="
+              "CodeSha256": "z1N3k/voQu9GizNzLlmGCEdl2BrW3+ClH8+T2BW5J+E="
             }
           },
-          "DonationGetLambdaVersionM0Ufnl9EyGTU4zHmew0EbAu6OGDk9QbyljbvIz0Oac": {
+          "DonationGetLambdaVersionC7ouG25sT1GmVM2vysbpncIYcZTb8r7GOgBzgHptEss": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "DonationGetLambdaFunction"
               },
-              "CodeSha256": "ewc1NxJHrEB92FSkYIJzJP0EmuNsKjU17TXG/h62yXg="
+              "CodeSha256": "z1N3k/voQu9GizNzLlmGCEdl2BrW3+ClH8+T2BW5J+E="
             }
           },
           "ApiGatewayRestApi": {
@@ -661,7 +661,7 @@
               "DonationGetLambdaPermissionApiGateway"
             ]
           },
-          "ApiGatewayDeployment1664986649407": {
+          "ApiGatewayDeployment1665068279541": {
             "Type": "AWS::ApiGateway::Deployment",
             "Properties": {
               "RestApiId": {
@@ -837,7 +837,7 @@
           "SimpleLambdaLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "SimpleLambdaLambdaVersionq12qrWLC00KNEJ3l2RRJSXNsXNONV4WY5CmmVGbJNQ"
+              "Ref": "SimpleLambdaLambdaVersion9ttIR1rrZzKC4pkc6YFhxVjPZFdxKhclgTYMFBhCo"
             },
             "Export": {
               "Name": "sls-lambda-web-service-dev-SimpleLambdaLambdaFunctionQualifiedArn"
@@ -846,7 +846,7 @@
           "SimpleHttpLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "SimpleHttpLambdaVersiono0Zg6inTnGWXOJImdfD18LLiH2mjYfRA4UQhRkl61Ik"
+              "Ref": "SimpleHttpLambdaVersionCSJi4lD1ji3lLC8UECk26eEM2NHln3Fadl0UUWZn4bw"
             },
             "Export": {
               "Name": "sls-lambda-web-service-dev-SimpleHttpLambdaFunctionQualifiedArn"
@@ -855,7 +855,7 @@
           "RequestPostLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "RequestPostLambdaVersioncvkeICf9Lm2zccBD0n347ourYqL0NOt4bQqNq74a3AE"
+              "Ref": "RequestPostLambdaVersionFhfu8B1IT8nACnYbu5EYfp0ay806GgGcjWLcWVZQE"
             },
             "Export": {
               "Name": "sls-lambda-web-service-dev-RequestPostLambdaFunctionQualifiedArn"
@@ -864,7 +864,7 @@
           "DonationPostLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "DonationPostLambdaVersionb9H99nYHPKYpakRoggLOngUt4A25PiqbUIBd5A6kLw"
+              "Ref": "DonationPostLambdaVersion9Eba5DKBYbeUBnfI05wnWampPPjBstV1MtNyQsvlYo"
             },
             "Export": {
               "Name": "sls-lambda-web-service-dev-DonationPostLambdaFunctionQualifiedArn"
@@ -873,7 +873,7 @@
           "DonationGetLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "DonationGetLambdaVersionM0Ufnl9EyGTU4zHmew0EbAu6OGDk9QbyljbvIz0Oac"
+              "Ref": "DonationGetLambdaVersionC7ouG25sT1GmVM2vysbpncIYcZTb8r7GOgBzgHptEss"
             },
             "Export": {
               "Name": "sls-lambda-web-service-dev-DonationGetLambdaFunctionQualifiedArn"
@@ -1005,10 +1005,10 @@
         "name": "lambda-web-service-dev-simpleLambda",
         "package": {},
         "memory": 1024,
-        "timeout": 10,
+        "timeout": 100,
         "runtime": "java11",
         "vpc": {},
-        "versionLogicalId": "SimpleLambdaLambdaVersionq12qrWLC00KNEJ3l2RRJSXNsXNONV4WY5CmmVGbJNQ"
+        "versionLogicalId": "SimpleLambdaLambdaVersion9ttIR1rrZzKC4pkc6YFhxVjPZFdxKhclgTYMFBhCo"
       },
       "simpleHttp": {
         "handler": "com.lamda.service.Lamda_Web_service.lambda.SimpleHttp",
@@ -1024,10 +1024,10 @@
         "name": "lambda-web-service-dev-simpleHttp",
         "package": {},
         "memory": 1024,
-        "timeout": 10,
+        "timeout": 100,
         "runtime": "java11",
         "vpc": {},
-        "versionLogicalId": "SimpleHttpLambdaVersiono0Zg6inTnGWXOJImdfD18LLiH2mjYfRA4UQhRkl61Ik"
+        "versionLogicalId": "SimpleHttpLambdaVersionCSJi4lD1ji3lLC8UECk26eEM2NHln3Fadl0UUWZn4bw"
       },
       "requestPost": {
         "handler": "com.lamda.service.Lamda_Web_service.lambda.requestPostHandler::handleRequest",
@@ -1043,10 +1043,10 @@
         "name": "lambda-web-service-dev-requestPost",
         "package": {},
         "memory": 1024,
-        "timeout": 10,
+        "timeout": 100,
         "runtime": "java11",
         "vpc": {},
-        "versionLogicalId": "RequestPostLambdaVersioncvkeICf9Lm2zccBD0n347ourYqL0NOt4bQqNq74a3AE"
+        "versionLogicalId": "RequestPostLambdaVersionFhfu8B1IT8nACnYbu5EYfp0ay806GgGcjWLcWVZQE"
       },
       "donationPost": {
         "handler": "com.lamda.service.Lamda_Web_service.lambda.donationPostHandler::handleRequest",
@@ -1062,10 +1062,10 @@
         "name": "lambda-web-service-dev-donationPost",
         "package": {},
         "memory": 1024,
-        "timeout": 10,
+        "timeout": 100,
         "runtime": "java11",
         "vpc": {},
-        "versionLogicalId": "DonationPostLambdaVersionb9H99nYHPKYpakRoggLOngUt4A25PiqbUIBd5A6kLw"
+        "versionLogicalId": "DonationPostLambdaVersion9Eba5DKBYbeUBnfI05wnWampPPjBstV1MtNyQsvlYo"
       },
       "donationGet": {
         "handler": "com.lamda.service.Lamda_Web_service.lambda.donationGetHandler::handleRequest",
@@ -1081,10 +1081,10 @@
         "name": "lambda-web-service-dev-donationGet",
         "package": {},
         "memory": 1024,
-        "timeout": 10,
+        "timeout": 100,
         "runtime": "java11",
         "vpc": {},
-        "versionLogicalId": "DonationGetLambdaVersionM0Ufnl9EyGTU4zHmew0EbAu6OGDk9QbyljbvIz0Oac"
+        "versionLogicalId": "DonationGetLambdaVersionC7ouG25sT1GmVM2vysbpncIYcZTb8r7GOgBzgHptEss"
       }
     },
     "configValidationMode": "warn",
@@ -1100,7 +1100,7 @@
       "package": {
         "artifact": "target/Lamda_Web_service-0.0.1-SNAPSHOT.jar",
         "artifactsS3KeyDirname": "serverless/lambda-web-service/dev/code-artifacts",
-        "artifactDirectoryName": "serverless/lambda-web-service/dev/1664986654791-2022-10-05T16:17:34.791Z"
+        "artifactDirectoryName": "serverless/lambda-web-service/dev/1665068289532-2022-10-06T14:58:09.532Z"
       },
       "functions": {
         "$ref": "$[\"service\"][\"functions\"]"
@@ -1110,7 +1110,7 @@
     "isDashboardMonitoringPreconfigured": false
   },
   "package": {
-    "artifactDirectoryName": "serverless/lambda-web-service/dev/1664986654791-2022-10-05T16:17:34.791Z",
+    "artifactDirectoryName": "serverless/lambda-web-service/dev/1665068289532-2022-10-06T14:58:09.532Z",
     "artifact": "Lamda_Web_service-0.0.1-SNAPSHOT.jar"
   }
 }

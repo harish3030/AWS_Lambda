@@ -6,31 +6,43 @@ import com.amazonaws.services.lambda.runtime.events.APIGatewayProxyRequestEvent;
 import com.amazonaws.services.lambda.runtime.events.APIGatewayProxyResponseEvent;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.util.JSONPObject;
+import com.lamda.service.Lamda_Web_service.LamdaWebServiceApplication;
 import com.lamda.service.Lamda_Web_service.controller.RequestController;
 import com.lamda.service.Lamda_Web_service.model.Requests;
 import org.apache.tomcat.util.json.JSONParser;
+import org.json.JSONObject;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Configurable;
+import org.springframework.boot.SpringApplication;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.ApplicationContextAware;
+import org.springframework.stereotype.Service;
 
 import java.io.DataInput;
 import java.io.IOException;
 
-public class requestPostHandler implements RequestHandler<APIGatewayProxyRequestEvent, APIGatewayProxyResponseEvent> {
+public class requestPostHandler implements RequestHandler<APIGatewayProxyRequestEvent, APIGatewayProxyResponseEvent>, ApplicationContextAware {
+
+    @Autowired
+    RequestController controller;
+
+    private static ApplicationContext springContext = SpringApplication.run(LamdaWebServiceApplication.class);
+
     @Override
-    public APIGatewayProxyResponseEvent handleRequest(APIGatewayProxyRequestEvent input, Context context) {
-        JSONObject input_json = new JSONPObject(input.getBody(), Requests.class);
-
-        JSONParser parser = new JSONParser(input.getBody());
-
-        RequestController controller = new RequestController();
-        //Requests request= (Requests) input_json.getValue();
-
+    public APIGatewayProxyResponseEvent handleRequest(APIGatewayProxyRequestEvent input, Context context){
         try {
-            Requests request = new ObjectMapper().readValue(input_json.toString(), Requests.class);
+            this.controller = springContext.getBean(RequestController.class);
+            Requests request = new ObjectMapper().readValue(input.getBody(), Requests.class);
             APIGatewayProxyResponseEvent response = new APIGatewayProxyResponseEvent();
             response.setBody(controller.createRequest(new Long(1),request).getBody().toString());
-            System.out.println("Response"+response);
             return response;
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    @Override
+    public void setApplicationContext(ApplicationContext applicationContext) {
+        this.springContext = applicationContext;
     }
 }
