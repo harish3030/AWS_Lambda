@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -47,13 +48,15 @@ public class DonationController {
 
     Map<String,String> response=new HashMap<String,String>();
     @GetMapping("/users/{userId}/donations")
-    public ResponseEntity<List<Donations>> getAllDonationsByUserId(@PathVariable(value = "userId") Long userId) {
+    public ResponseEntity<?> getAllDonationsByUserId(@PathVariable(value = "userId") Long userId) {
         if (!userRepository.existsById(userId)) {
             throw new ResourceNotFoundException("Not found User with id = " + userId);
         }
 
         List<Donations> donations = donationRepository.findByUserId(userId);
-        return new ResponseEntity<>(donations, HttpStatus.OK);
+        JSONObject multiple = new JSONObject();
+        multiple.put("donations",donations);
+        return new ResponseEntity<>(multiple, HttpStatus.OK);
     }
 
     @PostMapping("/users/{userId}/donations")

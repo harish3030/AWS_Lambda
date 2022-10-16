@@ -41,8 +41,8 @@ public class Donations {
     public void setUser(User user) {
         this.user = user;
     }
-    public User getUser() {
+    /*public User getUser() {
         return user;
-    }
+    }*/
 
    }

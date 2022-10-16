@@ -17,6 +17,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 
 import java.io.IOException;
+import java.util.Map;
 
 public class donationPostHandler implements RequestHandler<APIGatewayProxyRequestEvent, APIGatewayProxyResponseEvent>, ApplicationContextAware {
 
@@ -29,9 +30,12 @@ public class donationPostHandler implements RequestHandler<APIGatewayProxyReques
     public APIGatewayProxyResponseEvent handleRequest(APIGatewayProxyRequestEvent input, Context context) {
         try {
             this.controller = springContext.getBean(DonationController.class);
+            Map<String, String> pathParameters = input.getPathParameters();
+            String id = pathParameters.get("id");
+            Long user_id=Long.parseLong(id);
             Donations donations = new ObjectMapper().readValue(input.getBody(), Donations.class);
             APIGatewayProxyResponseEvent response = new APIGatewayProxyResponseEvent();
-            response.setBody(controller.createDonation(new Long(1),donations).getBody().toString());
+            response.setBody(controller.createDonation(user_id,donations).getBody().toString());
             return response;
         } catch (IOException e) {
             throw new RuntimeException(e);

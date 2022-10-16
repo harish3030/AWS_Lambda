@@ -14,6 +14,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 
+import java.util.Map;
+
 public class donationGetHandler implements RequestHandler<APIGatewayProxyRequestEvent, APIGatewayProxyResponseEvent>, ApplicationContextAware {
     @Autowired
     DonationController controller;
@@ -23,8 +25,12 @@ public class donationGetHandler implements RequestHandler<APIGatewayProxyRequest
     @Override
     public APIGatewayProxyResponseEvent handleRequest(APIGatewayProxyRequestEvent input, Context context) {
         this.controller = springContext.getBean(DonationController.class);
+        Map<String, String> pathParameters = input.getPathParameters();
+        String id = pathParameters.get("id");
+        Long user_id=Long.parseLong(id);
         APIGatewayProxyResponseEvent response = new APIGatewayProxyResponseEvent();
-        response.setBody(controller.getAllDonationsByUserId(new Long(1)).getBody().toString());
+        //System.out.println(controller.getAllDonationsByUserId(new Long(1)).getBody());
+        response.setBody(controller.getAllDonationsByUserId(user_id).getBody().toString());
         return response;
     }
 

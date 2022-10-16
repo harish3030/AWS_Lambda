@@ -194,7 +194,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/lambda-web-service/dev/1665929661109-2022-10-16T14:14:21.109Z/target/Lamda_Web_service-0.0.1-SNAPSHOT.jar"
+          "S3Key": "serverless/lambda-web-service/dev/1665939060407-2022-10-16T16:51:00.407Z/target/Lamda_Web_service-0.0.1-SNAPSHOT.jar"
         },
         "Handler": "com.lamda.service.Lamda_Web_service.lambda.requestPostHandler::handleRequest",
         "Runtime": "java11",
@@ -219,7 +219,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/lambda-web-service/dev/1665929661109-2022-10-16T14:14:21.109Z/target/Lamda_Web_service-0.0.1-SNAPSHOT.jar"
+          "S3Key": "serverless/lambda-web-service/dev/1665939060407-2022-10-16T16:51:00.407Z/target/Lamda_Web_service-0.0.1-SNAPSHOT.jar"
         },
         "Handler": "com.lamda.service.Lamda_Web_service.lambda.donationPostHandler::handleRequest",
         "Runtime": "java11",
@@ -244,7 +244,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/lambda-web-service/dev/1665929661109-2022-10-16T14:14:21.109Z/target/Lamda_Web_service-0.0.1-SNAPSHOT.jar"
+          "S3Key": "serverless/lambda-web-service/dev/1665939060407-2022-10-16T16:51:00.407Z/target/Lamda_Web_service-0.0.1-SNAPSHOT.jar"
         },
         "Handler": "com.lamda.service.Lamda_Web_service.lambda.donationGetHandler::handleRequest",
         "Runtime": "java11",
@@ -262,34 +262,34 @@
         "DonationGetLogGroup"
       ]
     },
-    "RequestPostLambdaVersionglB8FXNQ0rk2bzEQZhXSTc4PWJVh6hNhMZ8aYQPJ64": {
+    "RequestPostLambdaVersioncJA0dxOvHaMxZ3iLSafu2f89eNpN2z3CAViJuJ9JQE": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "RequestPostLambdaFunction"
         },
-        "CodeSha256": "xq2rTgWgRPTzetSZN7Fq+cAYScCLkC0Y2koitljAY2A="
+        "CodeSha256": "1NTs5WRTmtF63VkaXPVQHPJI1wJNJf1JHkFkyiVpqnU="
       }
     },
-    "DonationPostLambdaVersionKRscBvOOq9CdwC97SvsE9P6UDetB6n4VqfdlcXvI": {
+    "DonationPostLambdaVersionQeCOFTlZvEpRTupKSLbkZzq98VZws35LMaNmnlDhE": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "DonationPostLambdaFunction"
         },
-        "CodeSha256": "xq2rTgWgRPTzetSZN7Fq+cAYScCLkC0Y2koitljAY2A="
+        "CodeSha256": "1NTs5WRTmtF63VkaXPVQHPJI1wJNJf1JHkFkyiVpqnU="
       }
     },
-    "DonationGetLambdaVersionM4HVm7lZq21qeOyznLhd3ggVkPJw3uHJR1rfomMM1Q": {
+    "DonationGetLambdaVersionqR05K5kNymR0EOcLiVusCq2DJNO2bylKuy73LaeUbK0": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "DonationGetLambdaFunction"
         },
-        "CodeSha256": "xq2rTgWgRPTzetSZN7Fq+cAYScCLkC0Y2koitljAY2A="
+        "CodeSha256": "1NTs5WRTmtF63VkaXPVQHPJI1wJNJf1JHkFkyiVpqnU="
       }
     },
     "ApiGatewayRestApi": {
@@ -319,23 +319,23 @@
         }
       }
     },
-    "ApiGatewayResourceUsers1": {
+    "ApiGatewayResourceUsersIdVar": {
       "Type": "AWS::ApiGateway::Resource",
       "Properties": {
         "ParentId": {
           "Ref": "ApiGatewayResourceUsers"
         },
-        "PathPart": "1",
+        "PathPart": "{id}",
         "RestApiId": {
           "Ref": "ApiGatewayRestApi"
         }
       }
     },
-    "ApiGatewayResourceUsers1Requests": {
+    "ApiGatewayResourceUsersIdVarRequests": {
       "Type": "AWS::ApiGateway::Resource",
       "Properties": {
         "ParentId": {
-          "Ref": "ApiGatewayResourceUsers1"
+          "Ref": "ApiGatewayResourceUsersIdVar"
         },
         "PathPart": "requests",
         "RestApiId": {
@@ -343,11 +343,11 @@
         }
       }
     },
-    "ApiGatewayResourceUsers1Donations": {
+    "ApiGatewayResourceUsersIdVarDonations": {
       "Type": "AWS::ApiGateway::Resource",
       "Properties": {
         "ParentId": {
-          "Ref": "ApiGatewayResourceUsers1"
+          "Ref": "ApiGatewayResourceUsersIdVar"
         },
         "PathPart": "donations",
         "RestApiId": {
@@ -355,13 +355,15 @@
         }
       }
     },
-    "ApiGatewayMethodUsers1RequestsPost": {
+    "ApiGatewayMethodUsersIdVarRequestsPost": {
       "Type": "AWS::ApiGateway::Method",
       "Properties": {
         "HttpMethod": "POST",
-        "RequestParameters": {},
+        "RequestParameters": {
+          "method.request.path.id": true
+        },
         "ResourceId": {
-          "Ref": "ApiGatewayResourceUsers1Requests"
+          "Ref": "ApiGatewayResourceUsersIdVarRequests"
         },
         "RestApiId": {
           "Ref": "ApiGatewayRestApi"
@@ -395,19 +397,24 @@
             ]
           }
         },
-        "MethodResponses": []
+        "MethodResponses": [],
+        "RequestValidatorId": {
+          "Ref": "ApiGatewayLambdawebserviceRequestValidator"
+        }
       },
       "DependsOn": [
         "RequestPostLambdaPermissionApiGateway"
       ]
     },
-    "ApiGatewayMethodUsers1DonationsPost": {
+    "ApiGatewayMethodUsersIdVarDonationsPost": {
       "Type": "AWS::ApiGateway::Method",
       "Properties": {
         "HttpMethod": "POST",
-        "RequestParameters": {},
+        "RequestParameters": {
+          "method.request.path.id": true
+        },
         "ResourceId": {
-          "Ref": "ApiGatewayResourceUsers1Donations"
+          "Ref": "ApiGatewayResourceUsersIdVarDonations"
         },
         "RestApiId": {
           "Ref": "ApiGatewayRestApi"
@@ -441,19 +448,24 @@
             ]
           }
         },
-        "MethodResponses": []
+        "MethodResponses": [],
+        "RequestValidatorId": {
+          "Ref": "ApiGatewayLambdawebserviceRequestValidator"
+        }
       },
       "DependsOn": [
         "DonationPostLambdaPermissionApiGateway"
       ]
     },
-    "ApiGatewayMethodUsers1DonationsGet": {
+    "ApiGatewayMethodUsersIdVarDonationsGet": {
       "Type": "AWS::ApiGateway::Method",
       "Properties": {
         "HttpMethod": "GET",
-        "RequestParameters": {},
+        "RequestParameters": {
+          "method.request.path.id": true
+        },
         "ResourceId": {
-          "Ref": "ApiGatewayResourceUsers1Donations"
+          "Ref": "ApiGatewayResourceUsersIdVarDonations"
         },
         "RestApiId": {
           "Ref": "ApiGatewayRestApi"
@@ -487,13 +499,27 @@
             ]
           }
         },
-        "MethodResponses": []
+        "MethodResponses": [],
+        "RequestValidatorId": {
+          "Ref": "ApiGatewayLambdawebserviceRequestValidator"
+        }
       },
       "DependsOn": [
         "DonationGetLambdaPermissionApiGateway"
       ]
     },
-    "ApiGatewayDeployment1665929647654": {
+    "ApiGatewayLambdawebserviceRequestValidator": {
+      "Type": "AWS::ApiGateway::RequestValidator",
+      "Properties": {
+        "RestApiId": {
+          "Ref": "ApiGatewayRestApi"
+        },
+        "ValidateRequestBody": true,
+        "ValidateRequestParameters": true,
+        "Name": "lambda-web-service-dev | Validate request body and querystring parameters"
+      }
+    },
+    "ApiGatewayDeployment1665939058371": {
       "Type": "AWS::ApiGateway::Deployment",
       "Properties": {
         "RestApiId": {
@@ -502,9 +528,9 @@
         "StageName": "dev"
       },
       "DependsOn": [
-        "ApiGatewayMethodUsers1RequestsPost",
-        "ApiGatewayMethodUsers1DonationsPost",
-        "ApiGatewayMethodUsers1DonationsGet"
+        "ApiGatewayMethodUsersIdVarRequestsPost",
+        "ApiGatewayMethodUsersIdVarDonationsPost",
+        "ApiGatewayMethodUsersIdVarDonationsGet"
       ]
     },
     "RequestPostLambdaPermissionApiGateway": {
@@ -631,7 +657,7 @@
     "RequestPostLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "RequestPostLambdaVersionglB8FXNQ0rk2bzEQZhXSTc4PWJVh6hNhMZ8aYQPJ64"
+        "Ref": "RequestPostLambdaVersioncJA0dxOvHaMxZ3iLSafu2f89eNpN2z3CAViJuJ9JQE"
       },
       "Export": {
         "Name": "sls-lambda-web-service-dev-RequestPostLambdaFunctionQualifiedArn"
@@ -640,7 +666,7 @@
     "DonationPostLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "DonationPostLambdaVersionKRscBvOOq9CdwC97SvsE9P6UDetB6n4VqfdlcXvI"
+        "Ref": "DonationPostLambdaVersionQeCOFTlZvEpRTupKSLbkZzq98VZws35LMaNmnlDhE"
       },
       "Export": {
         "Name": "sls-lambda-web-service-dev-DonationPostLambdaFunctionQualifiedArn"
@@ -649,7 +675,7 @@
     "DonationGetLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "DonationGetLambdaVersionM4HVm7lZq21qeOyznLhd3ggVkPJw3uHJR1rfomMM1Q"
+        "Ref": "DonationGetLambdaVersionqR05K5kNymR0EOcLiVusCq2DJNO2bylKuy73LaeUbK0"
       },
       "Export": {
         "Name": "sls-lambda-web-service-dev-DonationGetLambdaFunctionQualifiedArn"

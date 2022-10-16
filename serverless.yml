@@ -27,19 +27,31 @@ functions:
     events:
       - http:
           method: POST
-          path: /users/1/requests
+          path: /users/{id}/requests
+          request:
+            parameters:
+              paths:
+                id: true
   donationPost:
     handler: com.lamda.service.Lamda_Web_service.lambda.donationPostHandler::handleRequest
     events:
       - http:
           method: POST
-          path: /users/1/donations
+          path: /users/{id}/donations
+          request:
+            parameters:
+              paths:
+                id: true
   donationGet:
     handler: com.lamda.service.Lamda_Web_service.lambda.donationGetHandler::handleRequest
     events:
       - http:
           method: GET
-          path: /users/1/donations
+          path: /users/{id}/donations
+          request:
+            parameters:
+              paths:
+                id: true
 
 
 

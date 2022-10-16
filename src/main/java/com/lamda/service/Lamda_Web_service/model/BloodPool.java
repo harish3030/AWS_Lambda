@@ -23,6 +23,9 @@ public class BloodPool {
     public void setBank(Bank bank) {
         this.bank = bank;
     }
+    public String getBankName(){
+        return this.bank.getName();
+    }
     public String getBloodGroup(){
         return bloodGroup;
     }

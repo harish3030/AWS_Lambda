@@ -12,6 +12,7 @@ import com.lamda.service.Lamda_Web_service.repository.BloodPoolRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
 
@@ -25,6 +26,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.lamda.service.Lamda_Web_service.exception.ResourceNotFoundException;
 import com.lamda.service.Lamda_Web_service.model.Requests;
+import com.lamda.service.Lamda_Web_service.model.Bank;
 import com.lamda.service.Lamda_Web_service.repository.RequestRepository;
 import com.lamda.service.Lamda_Web_service.repository.UserRepository;
 import com.lamda.service.Lamda_Web_service.repository.BloodPoolRepository;
@@ -42,6 +44,7 @@ public class RequestController {
 
     Map<String,String> response=new HashMap<String,String>();
     @PostMapping("/users/{userId}/requests")
+    @Transactional
     public ResponseEntity<?> createRequest(@PathVariable(value = "userId") Long userId,
                                            @RequestBody Requests new_request) {
 
@@ -75,6 +78,11 @@ public class RequestController {
                 bank.decrementUnits(amountRequested);
                 bloodPoolRepository.save(bank);
                 response.put("message","Request fulfilled");
+
+                String ans= bank.getBankName();
+                System.out.println(ans);
+                response.put("blood_bank_name",ans);
+                System.out.println(response);
                 return new ResponseEntity<>(response, HttpStatus.OK);
             }
         }

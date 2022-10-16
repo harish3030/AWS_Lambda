@@ -20,6 +20,7 @@ import org.springframework.stereotype.Service;
 
 import java.io.DataInput;
 import java.io.IOException;
+import java.util.Map;
 
 public class requestPostHandler implements RequestHandler<APIGatewayProxyRequestEvent, APIGatewayProxyResponseEvent>, ApplicationContextAware {
 
@@ -32,9 +33,12 @@ public class requestPostHandler implements RequestHandler<APIGatewayProxyRequest
     public APIGatewayProxyResponseEvent handleRequest(APIGatewayProxyRequestEvent input, Context context){
         try {
             this.controller = springContext.getBean(RequestController.class);
+            Map<String, String> pathParameters = input.getPathParameters();
+            String id = pathParameters.get("id");
+            Long user_id=Long.parseLong(id);
             Requests request = new ObjectMapper().readValue(input.getBody(), Requests.class);
             APIGatewayProxyResponseEvent response = new APIGatewayProxyResponseEvent();
-            response.setBody(controller.createRequest(new Long(1),request).getBody().toString());
+            response.setBody(controller.createRequest(user_id,request).getBody().toString());
             return response;
         } catch (IOException e) {
             throw new RuntimeException(e);
