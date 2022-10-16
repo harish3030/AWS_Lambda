@@ -71,18 +71,6 @@
         }
       }
     },
-    "SimpleLambdaLogGroup": {
-      "Type": "AWS::Logs::LogGroup",
-      "Properties": {
-        "LogGroupName": "/aws/lambda/lambda-web-service-dev-simpleLambda"
-      }
-    },
-    "SimpleHttpLogGroup": {
-      "Type": "AWS::Logs::LogGroup",
-      "Properties": {
-        "LogGroupName": "/aws/lambda/lambda-web-service-dev-simpleHttp"
-      }
-    },
     "RequestPostLogGroup": {
       "Type": "AWS::Logs::LogGroup",
       "Properties": {
@@ -199,61 +187,6 @@
         }
       }
     },
-    "SimpleLambdaLambdaFunction": {
-      "Type": "AWS::Lambda::Function",
-      "Properties": {
-        "Code": {
-          "S3Bucket": {
-            "Ref": "ServerlessDeploymentBucket"
-          },
-          "S3Key": "serverless/lambda-web-service/dev/1665068289532-2022-10-06T14:58:09.532Z/Lamda_Web_service-0.0.1-SNAPSHOT.jar"
-        },
-        "Handler": "com.lamda.service.Lamda_Web_service.lambda.User",
-        "Runtime": "java11",
-        "FunctionName": "lambda-web-service-dev-simpleLambda",
-        "MemorySize": 1024,
-        "Timeout": 100,
-        "Environment": {
-          "Variables": {
-            "MESSAGE": "Duke42"
-          }
-        },
-        "Role": {
-          "Fn::GetAtt": [
-            "IamRoleLambdaExecution",
-            "Arn"
-          ]
-        }
-      },
-      "DependsOn": [
-        "SimpleLambdaLogGroup"
-      ]
-    },
-    "SimpleHttpLambdaFunction": {
-      "Type": "AWS::Lambda::Function",
-      "Properties": {
-        "Code": {
-          "S3Bucket": {
-            "Ref": "ServerlessDeploymentBucket"
-          },
-          "S3Key": "serverless/lambda-web-service/dev/1665068289532-2022-10-06T14:58:09.532Z/Lamda_Web_service-0.0.1-SNAPSHOT.jar"
-        },
-        "Handler": "com.lamda.service.Lamda_Web_service.lambda.SimpleHttp",
-        "Runtime": "java11",
-        "FunctionName": "lambda-web-service-dev-simpleHttp",
-        "MemorySize": 1024,
-        "Timeout": 100,
-        "Role": {
-          "Fn::GetAtt": [
-            "IamRoleLambdaExecution",
-            "Arn"
-          ]
-        }
-      },
-      "DependsOn": [
-        "SimpleHttpLogGroup"
-      ]
-    },
     "RequestPostLambdaFunction": {
       "Type": "AWS::Lambda::Function",
       "Properties": {
@@ -261,7 +194,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/lambda-web-service/dev/1665068289532-2022-10-06T14:58:09.532Z/Lamda_Web_service-0.0.1-SNAPSHOT.jar"
+          "S3Key": "serverless/lambda-web-service/dev/1665929661109-2022-10-16T14:14:21.109Z/target/Lamda_Web_service-0.0.1-SNAPSHOT.jar"
         },
         "Handler": "com.lamda.service.Lamda_Web_service.lambda.requestPostHandler::handleRequest",
         "Runtime": "java11",
@@ -286,7 +219,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/lambda-web-service/dev/1665068289532-2022-10-06T14:58:09.532Z/Lamda_Web_service-0.0.1-SNAPSHOT.jar"
+          "S3Key": "serverless/lambda-web-service/dev/1665929661109-2022-10-16T14:14:21.109Z/target/Lamda_Web_service-0.0.1-SNAPSHOT.jar"
         },
         "Handler": "com.lamda.service.Lamda_Web_service.lambda.donationPostHandler::handleRequest",
         "Runtime": "java11",
@@ -311,7 +244,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/lambda-web-service/dev/1665068289532-2022-10-06T14:58:09.532Z/Lamda_Web_service-0.0.1-SNAPSHOT.jar"
+          "S3Key": "serverless/lambda-web-service/dev/1665929661109-2022-10-16T14:14:21.109Z/target/Lamda_Web_service-0.0.1-SNAPSHOT.jar"
         },
         "Handler": "com.lamda.service.Lamda_Web_service.lambda.donationGetHandler::handleRequest",
         "Runtime": "java11",
@@ -329,54 +262,34 @@
         "DonationGetLogGroup"
       ]
     },
-    "SimpleLambdaLambdaVersion9ttIR1rrZzKC4pkc6YFhxVjPZFdxKhclgTYMFBhCo": {
-      "Type": "AWS::Lambda::Version",
-      "DeletionPolicy": "Retain",
-      "Properties": {
-        "FunctionName": {
-          "Ref": "SimpleLambdaLambdaFunction"
-        },
-        "CodeSha256": "z1N3k/voQu9GizNzLlmGCEdl2BrW3+ClH8+T2BW5J+E="
-      }
-    },
-    "SimpleHttpLambdaVersionCSJi4lD1ji3lLC8UECk26eEM2NHln3Fadl0UUWZn4bw": {
-      "Type": "AWS::Lambda::Version",
-      "DeletionPolicy": "Retain",
-      "Properties": {
-        "FunctionName": {
-          "Ref": "SimpleHttpLambdaFunction"
-        },
-        "CodeSha256": "z1N3k/voQu9GizNzLlmGCEdl2BrW3+ClH8+T2BW5J+E="
-      }
-    },
-    "RequestPostLambdaVersionFhfu8B1IT8nACnYbu5EYfp0ay806GgGcjWLcWVZQE": {
+    "RequestPostLambdaVersionglB8FXNQ0rk2bzEQZhXSTc4PWJVh6hNhMZ8aYQPJ64": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "RequestPostLambdaFunction"
         },
-        "CodeSha256": "z1N3k/voQu9GizNzLlmGCEdl2BrW3+ClH8+T2BW5J+E="
+        "CodeSha256": "xq2rTgWgRPTzetSZN7Fq+cAYScCLkC0Y2koitljAY2A="
       }
     },
-    "DonationPostLambdaVersion9Eba5DKBYbeUBnfI05wnWampPPjBstV1MtNyQsvlYo": {
+    "DonationPostLambdaVersionKRscBvOOq9CdwC97SvsE9P6UDetB6n4VqfdlcXvI": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "DonationPostLambdaFunction"
         },
-        "CodeSha256": "z1N3k/voQu9GizNzLlmGCEdl2BrW3+ClH8+T2BW5J+E="
+        "CodeSha256": "xq2rTgWgRPTzetSZN7Fq+cAYScCLkC0Y2koitljAY2A="
       }
     },
-    "DonationGetLambdaVersionC7ouG25sT1GmVM2vysbpncIYcZTb8r7GOgBzgHptEss": {
+    "DonationGetLambdaVersionM4HVm7lZq21qeOyznLhd3ggVkPJw3uHJR1rfomMM1Q": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "DonationGetLambdaFunction"
         },
-        "CodeSha256": "z1N3k/voQu9GizNzLlmGCEdl2BrW3+ClH8+T2BW5J+E="
+        "CodeSha256": "xq2rTgWgRPTzetSZN7Fq+cAYScCLkC0Y2koitljAY2A="
       }
     },
     "ApiGatewayRestApi": {
@@ -389,21 +302,6 @@
           ]
         },
         "Policy": ""
-      }
-    },
-    "ApiGatewayResourceSimple": {
-      "Type": "AWS::ApiGateway::Resource",
-      "Properties": {
-        "ParentId": {
-          "Fn::GetAtt": [
-            "ApiGatewayRestApi",
-            "RootResourceId"
-          ]
-        },
-        "PathPart": "simple",
-        "RestApiId": {
-          "Ref": "ApiGatewayRestApi"
-        }
       }
     },
     "ApiGatewayResourceUsers": {
@@ -456,52 +354,6 @@
           "Ref": "ApiGatewayRestApi"
         }
       }
-    },
-    "ApiGatewayMethodSimplePost": {
-      "Type": "AWS::ApiGateway::Method",
-      "Properties": {
-        "HttpMethod": "POST",
-        "RequestParameters": {},
-        "ResourceId": {
-          "Ref": "ApiGatewayResourceSimple"
-        },
-        "RestApiId": {
-          "Ref": "ApiGatewayRestApi"
-        },
-        "ApiKeyRequired": false,
-        "AuthorizationType": "NONE",
-        "Integration": {
-          "IntegrationHttpMethod": "POST",
-          "Type": "AWS_PROXY",
-          "Uri": {
-            "Fn::Join": [
-              "",
-              [
-                "arn:",
-                {
-                  "Ref": "AWS::Partition"
-                },
-                ":apigateway:",
-                {
-                  "Ref": "AWS::Region"
-                },
-                ":lambda:path/2015-03-31/functions/",
-                {
-                  "Fn::GetAtt": [
-                    "SimpleHttpLambdaFunction",
-                    "Arn"
-                  ]
-                },
-                "/invocations"
-              ]
-            ]
-          }
-        },
-        "MethodResponses": []
-      },
-      "DependsOn": [
-        "SimpleHttpLambdaPermissionApiGateway"
-      ]
     },
     "ApiGatewayMethodUsers1RequestsPost": {
       "Type": "AWS::ApiGateway::Method",
@@ -641,7 +493,7 @@
         "DonationGetLambdaPermissionApiGateway"
       ]
     },
-    "ApiGatewayDeployment1665068279541": {
+    "ApiGatewayDeployment1665929647654": {
       "Type": "AWS::ApiGateway::Deployment",
       "Properties": {
         "RestApiId": {
@@ -650,48 +502,10 @@
         "StageName": "dev"
       },
       "DependsOn": [
-        "ApiGatewayMethodSimplePost",
         "ApiGatewayMethodUsers1RequestsPost",
         "ApiGatewayMethodUsers1DonationsPost",
         "ApiGatewayMethodUsers1DonationsGet"
       ]
-    },
-    "SimpleHttpLambdaPermissionApiGateway": {
-      "Type": "AWS::Lambda::Permission",
-      "Properties": {
-        "FunctionName": {
-          "Fn::GetAtt": [
-            "SimpleHttpLambdaFunction",
-            "Arn"
-          ]
-        },
-        "Action": "lambda:InvokeFunction",
-        "Principal": "apigateway.amazonaws.com",
-        "SourceArn": {
-          "Fn::Join": [
-            "",
-            [
-              "arn:",
-              {
-                "Ref": "AWS::Partition"
-              },
-              ":execute-api:",
-              {
-                "Ref": "AWS::Region"
-              },
-              ":",
-              {
-                "Ref": "AWS::AccountId"
-              },
-              ":",
-              {
-                "Ref": "ApiGatewayRestApi"
-              },
-              "/*/*"
-            ]
-          ]
-        }
-      }
     },
     "RequestPostLambdaPermissionApiGateway": {
       "Type": "AWS::Lambda::Permission",
@@ -814,28 +628,10 @@
         "Name": "sls-lambda-web-service-dev-ServerlessDeploymentBucketName"
       }
     },
-    "SimpleLambdaLambdaFunctionQualifiedArn": {
-      "Description": "Current Lambda function version",
-      "Value": {
-        "Ref": "SimpleLambdaLambdaVersion9ttIR1rrZzKC4pkc6YFhxVjPZFdxKhclgTYMFBhCo"
-      },
-      "Export": {
-        "Name": "sls-lambda-web-service-dev-SimpleLambdaLambdaFunctionQualifiedArn"
-      }
-    },
-    "SimpleHttpLambdaFunctionQualifiedArn": {
-      "Description": "Current Lambda function version",
-      "Value": {
-        "Ref": "SimpleHttpLambdaVersionCSJi4lD1ji3lLC8UECk26eEM2NHln3Fadl0UUWZn4bw"
-      },
-      "Export": {
-        "Name": "sls-lambda-web-service-dev-SimpleHttpLambdaFunctionQualifiedArn"
-      }
-    },
     "RequestPostLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "RequestPostLambdaVersionFhfu8B1IT8nACnYbu5EYfp0ay806GgGcjWLcWVZQE"
+        "Ref": "RequestPostLambdaVersionglB8FXNQ0rk2bzEQZhXSTc4PWJVh6hNhMZ8aYQPJ64"
       },
       "Export": {
         "Name": "sls-lambda-web-service-dev-RequestPostLambdaFunctionQualifiedArn"
@@ -844,7 +640,7 @@
     "DonationPostLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "DonationPostLambdaVersion9Eba5DKBYbeUBnfI05wnWampPPjBstV1MtNyQsvlYo"
+        "Ref": "DonationPostLambdaVersionKRscBvOOq9CdwC97SvsE9P6UDetB6n4VqfdlcXvI"
       },
       "Export": {
         "Name": "sls-lambda-web-service-dev-DonationPostLambdaFunctionQualifiedArn"
@@ -853,7 +649,7 @@
     "DonationGetLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "DonationGetLambdaVersionC7ouG25sT1GmVM2vysbpncIYcZTb8r7GOgBzgHptEss"
+        "Ref": "DonationGetLambdaVersionM4HVm7lZq21qeOyznLhd3ggVkPJw3uHJR1rfomMM1Q"
       },
       "Export": {
         "Name": "sls-lambda-web-service-dev-DonationGetLambdaFunctionQualifiedArn"

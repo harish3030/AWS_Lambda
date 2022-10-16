@@ -21,16 +21,7 @@ package:
   artifact: target/Lamda_Web_service-0.0.1-SNAPSHOT.jar
 
 functions:
-  simpleLambda:
-    handler: com.lamda.service.Lamda_Web_service.lambda.User
-    environment:
-      MESSAGE: Duke42
-  simpleHttp:
-    handler: com.lamda.service.Lamda_Web_service.lambda.SimpleHttp
-    events:
-      - http:
-          method: POST
-          path: /simple
+
   requestPost:
     handler: com.lamda.service.Lamda_Web_service.lambda.requestPostHandler::handleRequest
     events:
